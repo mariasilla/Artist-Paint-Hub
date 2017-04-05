@@ -1,0 +1,28 @@
+{
+  "name": "ga-project2-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariasilla/ga-project2-crud.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mariasilla/ga-project2-crud/issues"
+  },
+  "homepage": "https://github.com/mariasilla/ga-project2-crud#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "method-override": "^2.3.8",
+    "mustache-express": "^1.2.4",
+    "pg-promise": "^5.6.4"
+  }
+}
