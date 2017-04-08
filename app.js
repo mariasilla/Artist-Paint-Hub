@@ -128,12 +128,12 @@ app.get('/painting_upload', function(req, res){
   res.render('painting_upload/index');
 });
 
-// imgur.setClientID('054a9a88eceb2d5');
+// imgur.setClientID('');
 // imgur.upload(path.join(__dirname, 'images/korablik.JPG'), function (err, res) {
 //   console.log(res.data.link); // Log the imgur url
 // });
 
-//client id: 054a9a88eceb2d5
+
 
 
 app.put('/user', function(req, res){
