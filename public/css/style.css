@@ -2,11 +2,41 @@ body {
   /*background: url('./images/korablik.JPG') no-repeat center center fixed;
   background-size: cover;*/
 }
-.main-container {
+/*.main-container {
   width: 400px;
   margin: 0 auto;
 }
 
 h1 {
   text-align: center;
+}*/
+/*
+.transparent-input {
+  background-color: : rgba(0, 0, 0, 0.5);
+  border: none;
+}*/
+
+
+body{
+background: url('http://i.imgur.com/Mgc3gcj.jpg') no-repeat center center fixed;
+background-size: cover;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Architects Daughter', cursive, sans-serif;
+  font-size: 54px;
+}
+
+div.well.bs-component {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  margin: 0 auto;
+}
+
+#signup {
+  color: #0d821f;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 800;
 }

@@ -7,7 +7,7 @@ const bodyParser = require("body-parser");
 const session = require('express-session');
 const imgur = require('imgur-node-api');
 const path = require('path');
-
+const axios = require('axios');
 
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSalt(10);
@@ -29,18 +29,34 @@ app.use(session({
 
 var db = pgp('postgres://kuzia@localhost:5432/art_port_db');
 
-app.get('/', function(req, res){
-  if(req.session.user){
-    let data = {
-      "logged_in": true,
-      "email": req.session.user.email
-    };
 
-    res.render('index', data);
-  } else {
-    res.render('index');
-  }
+app.get('/', function(req, res){
+  res.render('home/index');
 });
+
+
+app.get('/profile', function(req, res){
+  let data ;
+  if(req.session.user){
+    data = {
+      "logged_in": true,
+      "email": req.session.user.email,
+      "zipcode": req.session.user.zipcode
+    };
+    var url = 'https://api.meetup.com/2/open_events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&zip=10003&text=painter&page=20';
+    // var route = 'movie/now_playing?'
+    // var key = '125567365e1835372f462b14a4a2d41';
+
+    axios.get(url)
+    .then(function(response){
+      data.meetup = response.data.results
+    //  console.log(data.meetup);
+    res.render('profile/index', data);
+  })
+  } else {
+    res.render('home/index');
+  }
+})
 
 app.post('/login', function(req, res){
   let data = req.body;
@@ -55,7 +71,7 @@ app.post('/login', function(req, res){
       bcrypt.compare(data.password, user.password_digest, function(err, cmp){
         if(cmp){
           req.session.user = user;
-          res.redirect("/");
+          res.redirect("/profile");
         } else {
           res.send(auth_error);
         }
@@ -73,18 +89,25 @@ app.post('/signup', function(req, res){
   bcrypt
     .hash(data.password, 10, function(err, hash){
       db.none(
-        "INSERT INTO users (email, nickname, level, favorite_method, password_digest) VALUES ($1, $2, $3, $4, $5)",
-        [data.email, data.nickname, data.level, data.method, hash]
+        "INSERT INTO users (email, nickname, level, zipcode, password_digest) VALUES ($1, $2, $3, $4, $5)",
+        [data.email, data.nickname, data.level, data.zipcode, hash]
       ).catch(function(e){
         res.send('Failed to create user: ' + e);
+
       }).then(function(){
-        res.send('User created!');
+        // res.send('User created!');
+        res.redirect("/");
       });
     });
 });
 
-app.post('/painting_upload', function(req, res){
-  let data = req.body;
+// app.post('/painting_upload', function(req, res){
+  // let data = req.body;
+  //
+  // db.none(
+  //   "INSERT INTO paintings (name, description, type, image_url, user_id) VALUES ($1, $2, $3, $4)",
+  //   [data.name, data.description, data.]
+  // )
   //  db.none(
   //   "INSERT INTO users (email, nickname, level, favorite_method, password_digest) VALUES ($1, $2, $3, $4, $5)",
   //   [data.email, data.nickname, data.level, data.method, hash]
@@ -93,17 +116,14 @@ app.post('/painting_upload', function(req, res){
   // }).then(function(){
   //   res.send('User created!')
   // })
-    console.log(data);
-    res.send(200);
-
-});
+//     console.log(data);
+//     res.send(200);
+//
+// });
 
 app.get('/painting_upload', function(req, res){
-     //
-    //  image: imgur.setClientID('054a9a88eceb2d5');
-    //  imgur.upload(path.join(__dirname, 'images/korablik.JPG'), function (err, res) {
-    //    console.log(res.data.link); //http://i.imgur.com/QBh5qqv.jpg
-    //  })
+
+  //API KEY 125567365e1835372f462b14a4a2d41
 
   res.render('painting_upload/index');
 });
@@ -114,22 +134,6 @@ app.get('/painting_upload', function(req, res){
 // });
 
 //client id: 054a9a88eceb2d5
-
-// app.get('/painting_upload', function(req, res){
-//   var url = 'https://api.imgur.com/3/upload';
-//  //  var route = 'movie/now_playing?'
-//   var page = 'page=' + "1" +'&';
-//   var key = '';
-//   request(url + route + page + key, function(error, response, body){
-//     console.log("error: ", error);
-//     console.log("statusCode: ", response && response.statusCode);
-//     console.log('body', body);
-//     var data = JSON.parse(body);
-//     res.render("index", {
-//       movies: data.results
-//     })
-//   })
-// })
 
 
 app.put('/user', function(req, res){

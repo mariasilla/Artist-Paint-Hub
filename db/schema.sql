@@ -3,11 +3,11 @@ DROP TABLE IF EXISTS paintings CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
 
 CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,c
   email VARCHAR(255) UNIQUE,
   nickname VARCHAR(255),
   level VARCHAR(255),
-  favorite_method VARCHAR(255),
+  zipcode INTEGER,
   password_digest VARCHAR(255)
   -- add location attribute
 );
