@@ -28,9 +28,10 @@
     <div class="homepagesection-divider" id="eventHr">
       <h3>Art events happening in your area</h3>
     </div>
-     {{#meetup}}
+
      <div class="container" id="eventsContainer">
        <div class="row">
+         {{#meetup}}
          <div class="col-md-4">
            <h2>{{group.name}}</h2>
            <!-- <p>Address: {{}}</p> -->
@@ -41,8 +42,8 @@
            <p>Event description</p>
            <p><a class="btn btn-default" href="#" role="button">Event details link &raquo;</a></p>
         </div> -->
+        {{/meetup}}
        </div>
-       {{/meetup}}
 
     <!-- <div class="content">
        <ul>

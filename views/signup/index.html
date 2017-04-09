@@ -2,60 +2,95 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="/css/style.css" rel="stylesheet" type="text/css">
-    <!-- <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'> -->
+
   </head>
 
   <body>
-    <div class="main-container">
-      <div class="border-container">
-        <h1>Please sign up here</h1>
-        <div class="col-lg-6 center-block">
-          <div class="well bs-component">
-            <form class="form-horizontal" action="/signup" method="post">
-              <fieldset>
-                <legend>Sign Up</legend>
+    <!-- Navigation -->
+    <nav class="navbar navbar-fixed-top" role="navigation">
+       <div class="container">
+          <h1>Artist Paint Hub</h1>
+       </div>
+   </nav>
+
+   <!-- Form starts here -->
+    <div class="container">
+      <form class="well form-horizontal" action="/signup" method="post" id="signup_form">
+       <fieldset>
+        <legend class="contact-legend"><span lang="en" class="english">Please sign up here</legend>
+
+          <!-- Text input-->
                 <div class="form-group">
-                  <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-                  <div class="col-lg-10">
-                    <input name="email" type="email" class="form-control" id="inputEmail" placeholder="Email" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputNickname" class="col-lg-2 control-label">Nickname</label>
-                  <div class="col-lg-10">
-                    <input name="nickname" type="text" class="form-control" id="inputNickname" placeholder="Nickname" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputLevel" class="col-lg-2 control-label">Level</label>
-                  <div class="col-lg-10">
-                    <input name="level" type="text" class="form-control" id="inputLevel" placeholder="Level">
-                  </div>
-                </div>
-                <div class="forms-group">
-                  <label for="inputZipcode" class="col-lg-2 control-label">Enter your zipcode</label>
-                  <div class="col-lg-10">
-                    <input name="zipcode" type="number" class="form-control" id="inputZipcode" placeholder="Zip Code" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-                  <div class="col-lg-10">
-                    <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-lg-10 col-lg-offset-2">
-                    <button type="submit" class="btn btn-primary" id="join">Join!</button>
-                  </div>
-                </div>
-              </fieldset>
-            </form>
-          </div>
+                  <label for="inputEmail" class="col-md-4 control-label">Email</label>
+                    <div class="col-md-4 inputGroupContainer">
+                     <div class="input-group">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                       <input name="email" type="email" class="form-control" id="inputEmail" placeholder="Email" required>
+                    </div>
+                 </div>
+              </div>
+
+  <!-- Text input-->
+
+    <div class="form-group">
+       <label for="inputNickname" class="col-md-4 control-label">Nickname</label>
+         <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="nickname" type="text" class="form-control" id="inputNickname" placeholder="Nickname" required>
+         </div>
         </div>
+     </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="inputLevel" class="col-md-4 control-label">Level</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-paint-brush"></i></span>
+    <input name="level" type="text" class="form-control" id="inputLevel" placeholder="Level">
       </div>
     </div>
+  </div>
+
+
+  <!-- input-->
+  <div class="form-group">
+    <label for="inputZipcode" class="col-md-4 control-label">Enter your zipcode</label>
+     <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+           <input name="zipcode" type="number" class="form-control" id="inputZipcode" placeholder="Zip Code" required>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="inputPassword" class="col-md-4 control-label">Password</label>
+      <div class="col-md-4 inputGroupContainer">
+       <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+         <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password" required>
+       </div>
+      </div>
+    </div>
+
+
+  <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label"></label>
+       <div class="col-md-4">
+        <button type="submit" class="btn btn-primary addValue" id="joinBtn">Join!</button>
+      </div>
+    </div>
+
+    </fieldset>
+  </form>
+ </div>
+
   </body>
   <script src="/js/jquery.js"></script>
   <script src="/js/script.js"></script>

@@ -2,11 +2,84 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <!-- <link href='https://fonts.googleapis.com/css?family=Rye' rel='stylesheet' type='text/css'> -->
   </head>
   <body>
-   <div class="main-container">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-fixed-top" role="navigation">
+       <div class="container">
+          <h1>Artist Paint Hub</h1>
+       </div>
+   </nav>
+
+    <!-- Form starts here -->
+    <div class="container">
+      <form class="well form-horizontal" id="uploadForm" enctype="multipart/form-data" action="/new_painting_upload" method="post">
+       <fieldset>
+        <legend class="contact-legend"><span lang="en" class="english">Upload your painting here</legend>
+
+       <!-- Text input-->
+        <div class="form-group">
+          <label for="inputName" class="col-lg-2 control-label">Name</label>
+            <div class="col-md-4 inputGroupContainer">
+             <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-file-text" aria-hidden="true"></i></span>
+               <input name="name" type="text" class="form-control" id="inputName" placeholder="Name">
+           </div>
+         </div>
+      </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="inputDescription" class="col-lg-2 control-label">Description</label>
+      <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-paint-brush"></i></span>
+        <input name="description" type="text" class="form-control" id="inputDescription" placeholder="Description">
+      </div>
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="inputType" class="col-lg-2 control-label">Type of your painting</label>
+     <div class="col-md-4 inputGroupContainer">
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+           <input name="type" type="text" class="form-control" id="inputType" placeholder="Type">
+      </div>
+    </div>
+  </div>
+
+  <!-- Text input-->
+  <div class="form-group">
+    <label for="inputImage" class="col-lg-2 control-label">Upload the image of your painting</label>
+      <div class="col-md-4 inputGroupContainer">
+       <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+         <input type="file"  name="image"/>
+       </div>
+      </div>
+    </div>
+
+
+  <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label"></label>
+       <div class="col-md-4">
+        <button type="submit" class="btn btn-primary addValue" id="uploadBtn">Upload!</button>
+      </div>
+    </div>
+
+    </fieldset>
+  </form>
+ </div>
+
+
+
+   <!-- <div class="main-container">
         <h1>Upload your painting</h1>
             <form class="form-horizontal" id="uploadForm" enctype="multipart/form-data" action="/new_painting_upload" method="post">
                 <legend>Upload</legend>
@@ -18,18 +91,19 @@
                     <input name="description" type="text" class="form-control" id="inputDescription" placeholder="Description">
 
                   <label for="inputType" class="col-lg-2 control-label">Type of your painting</label>
-                    <input name="type" type="text" class="form-control" id="inputType" placeholder="Type">
+                    <input name="type" type="text" class="form-control" id="inputType" placeholder="Type"> -->
                 <!-- <div class="form-group">
                   <label for="inputImage_url" class="col-lg-2 control-label">Upload the image of your painting</label>
                   <div class="col-lg-10">
                     <input name="image_url" type="text" class="form-control" id="inputImage_url" placeholder="image_url">
                   </div>
-                </div> -->
+                </div>
                 <label for="inputImage" class="col-lg-2 control-label">Upload the image of your painting</label>
                  <input type="file"  name="image"/>
                 <button type="submit" class="btn btn-primary" id="create">Create!</button>
          </form>
-     </div>
+     </div> -->
+
    <a href="/logout">Logout!</a>
 
    </body>

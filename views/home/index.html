@@ -15,6 +15,7 @@
          <h1>Artist Paint Hub</h1>
       </div>
   </nav>
+  <!-- Form starts here -->
      <div class="container" id="loginForm">
        <h2 id="homeHeading">Welcome! Here you you can display your paintings, connect with other artists and comment on each other's work.</h2>
          <!-- <br> -->
@@ -22,16 +23,18 @@
             <form class="form-signin" action="/login" method="post">
                 <h3 class="form-signin-heading">Please log in</h3>
                 <label for="inputEmail" class="sr-only">Email</label>
+                    <!-- Text input-->
                     <input value="a@gmail.com" name="email" type="email" class="form-control" id="inputEmail" placeholder="Email address">
                 <label for="inputPassword" class="sr-only">Password</label>
+                     <!-- Text input-->
                     <input value="1234" name="password" type="password" class="form-control" id="inputPassword" placeholder="Password">
-                <button type="submit" class="btn btn-primary" id="login">Login</button>
+                <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
             </form>
     </div>
      <!-- Footer -->
         <footer class="footer navbar-bottom">
           <div class="container">
-            <p>Not a member? <a href="/signup" id="signup">Sign Up!</a></p>
+            <p>Not a member? <a href="/signup" id="signup_link">Sign Up!</a></p>
           </div>
        </footer>
 
