@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Bootstrap CSS  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Google Font Architects D  -->
+    <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+    <!-- Main CSS -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-fixed-top" role="navigation">
+      <div class="container">
+        <h1>Artist Paint Hub</h1>
+          <a href="/logout">Logout!</a>
+      </div>
+    </nav>
+
+        <!-- <br> -->
+        {{#logged_in}}
+
+    <div class="homepagesection-divider" id="hr1">
+      <h2> {{nickname}}'s portfolio.</h2>
+    </div>
+
+        <div class="content">
+
+     <ul>
+
+        <li><a href="#!"><img  src="korablik.JPG" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal" data-pname="" class=""></a></li>
+
+    </ul>
+     </div>
+     <div class="homepagesection-divider" id="footerHr">
+            <a href="/new_painting_upload">Upload your painting</a>
+     </div>
+
+        {{/logged_in}}
+
+  </body>
+  <!-- Jquery  -->
+  <script src="/js/jquery.js"></script>
+  <!-- Main JS -->
+  <script src="/js/script.js"></script>
+</html>

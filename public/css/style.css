@@ -25,10 +25,10 @@ background-size: cover;
 h1 {
   text-align: center;
   font-family: 'Architects Daughter', cursive, sans-serif;
-  font-size: 54px;
+  font-size: 70px;
 }
 
-div.well.bs-component {
+#loginForm {
   background-color: rgba(0, 0, 0, 0);
   border: none;
   margin: 0 auto;
@@ -39,4 +39,65 @@ div.well.bs-component {
   text-decoration: none;
   font-size: 20px;
   font-weight: 800;
+}
+#homeHeading{
+  margin-top: 200px;
+}
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+footer {
+  margin-top: 50px;
+  text-align: center;
+}
+.content a {
+    display: block;
+}
+#hr1 {
+  margin-top: 200px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+#eventHr{
+  margin-top: 50px;
+  margin-bottom: -55px;
+  text-align: center;
+}
+#eventsContainer{
+  margin-top: 50px;
+}
+#footerHr{
+  margin-top: 40px;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 30px;
 }
