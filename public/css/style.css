@@ -33,8 +33,21 @@ h1 {
   border: none;
   margin: 0 auto;
 }
+#loginBtn,#joinBtn,#uploadBtn{
+  margin: 0 35%;
+  background-color: #0d821f;
+  color: black;
+  border: none;
+  font-size: 23px;
+}
+#signup_form, #uploadForm{
+  margin-top: 150px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 
-#signup {
+}
+
+#signup_link {
   color: #0d821f;
   text-decoration: none;
   font-size: 20px;
