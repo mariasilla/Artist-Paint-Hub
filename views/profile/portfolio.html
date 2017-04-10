@@ -22,17 +22,37 @@
         {{#logged_in}}
 
     <div class="homepagesection-divider" id="hr1">
-      <h2> {{nickname}}'s portfolio.</h2>
+      <h2 id="portHeading"> {{nickname}}'s portfolio.</h2>
     </div>
 
         <div class="content">
-
      <ul>
-
-        <li><a href="#!"><img  src="korablik.JPG" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal" data-pname="" class=""></a></li>
-
+       {{#paintings}}
+        <!-- <li><a href="#!"><img src="images/korablik.JPG" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal" data-pname="" class=""></a></li> -->
+        <li><a href="#!"><img src="{{image}}" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal" data-pname="{{name}}" class=""></a></li>
+        {{/paintings}}
     </ul>
      </div>
+
+     <!-- myModal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <div class="modal-body">
+        <img class="modal-src" src="" class="modalimage" alt="Modal Image" style="-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;width:100%">
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modal-close-button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
      <div class="homepagesection-divider" id="footerHr">
             <a href="/new_painting_upload">Upload your painting</a>
      </div>
@@ -42,6 +62,8 @@
   </body>
   <!-- Jquery  -->
   <script src="/js/jquery.js"></script>
+  <!-- Bootstrap Core JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <!-- Main JS -->
   <script src="/js/script.js"></script>
 </html>

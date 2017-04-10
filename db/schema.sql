@@ -27,3 +27,8 @@ CREATE TABLE comments (
   painting_id INTEGER REFERENCES paintings(id),
   user_id INTEGER REFERENCES users(id)
 );
+
+-- INSERT INTO paintings
+--  (name, description, type, image, likes, user_id)
+-- VALUES
+-- ( 'Ship', 'nature', 'oil', 'http://localhost:3000/korablik.JPG', '', 1),

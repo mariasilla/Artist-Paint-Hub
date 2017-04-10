@@ -1,24 +1,28 @@
 $("document").ready(function() {
 
-
-// var userZipcode;
+  // Bootstrap Modal
+// var painting_one = $("#img1");
+// var myModal = $("#myModal");
 //
-// $('#login').click(function(){
-//   userZipcode = $('#inputZipcode').val();
-//   makeCall();
-//   // alert("hhh")
+// painting_one.click(function(e){
+//   e.preventDefault();
+//   showModal();
 // })
 //
-// var response;
-// var makeCall = function() {
-//   $.ajax({
-//      url: "https://api.meetup.com/2/open_events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&zip=10003&text=painter&page=20"
-//    }).success(function(data){
-//       response = data;
-//       console.log(response);
-//    })
-//  }
-//
+// function showModal() {
+//   myModal.modal("show");
+//   $("#myModalLabel").text("sjkdnskjadnkasdnla");
+// }
+
+$('#myModal').on('show.bs.modal', function (event) {
+  var img = $(event.relatedTarget) // Img that triggered the modal
+  var paintingName = img.data('pname') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  var paintingSrc = img.attr('src')
+  var modal = $(this)
+  modal.find('.modal-title').text(paintingName)
+  modal.find('.modal-src').attr('src', paintingSrc);
+})
 
 
 });

@@ -8,7 +8,14 @@ const bodyParser = require("body-parser");
 const session = require('express-session');
 const path = require('path');
 const axios = require('axios');
+
+//Multer
 const multer  = require('multer');
+
+// //Multiparty
+// var multiparty = require('multiparty');
+// var http = require('http');
+// var util = require('util');
 
 //Bcrypt
 const bcrypt = require('bcrypt');
@@ -22,6 +29,8 @@ app.use("/", express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(methodOverride('_method'))
+app.use(express.static('uploads'))
+
 
 //configuration of session package
 app.use(session({
@@ -30,6 +39,7 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }))
+
 
 
 //connect to art_port_db database
@@ -110,29 +120,64 @@ app.post('/signup', function(req, res){
 });
 
 //Render portfolio html
-// app.get('/portfolio', function(req, res){
-//
-//
-//   res.render('profile/portfolio');
-// });
 app.get('/portfolio', function(req, res){
-  var data ;
+  var data;
   if(req.session.user){
-    data = {
+       data = {
       "logged_in": true,
       "email": req.session.user.email,
       "nickname": req.session.user.nickname
-    };
-    res.render('profile/portfolio', data);
+         };
+
+    db
+       .any("SELECT * FROM paintings")
+       .then(function(data){
+         data.paintings_array = {
+           paintings: data
+          }
+
+        res.render('profile/portfolio', data)
+     })
+
+    // res.render('profile/portfolio', data);
   } else {
     res.render('home/index');
   }
 })
 
-
 //Multer upload
 // followed this tutorial: https://www.codementor.io/tips/9172397814/setup-file-uploading-in-an-express-js-application-using-multer-js
-// Render painting upload form
+app.post('/new_painting_upload', multer({ dest: './uploads/images/'}).single('image'), function(req,res){
+  var data;
+  if(req.session.user){
+    console.log(req.body);
+    data = req.body;
+
+    console.log(req.file.path);
+    var imagePath =  req.file.path.substring(8);
+    console.log(imagePath);
+    // res.status(204).end();
+
+                db.none(
+                  "INSERT INTO paintings (name, description, type, image, user_id) VALUES ($1, $2, $3, $4, $5)",
+                  [data.name, data.description, data.type, imagePath, 1]
+                ).catch(function(e){
+                  res.send('Failed to upload: ' + e);
+
+                }).then(function(){
+                  // res.render('profile/portfolio', data);
+                  res.redirect("/portfolio");
+                });
+
+       } else {
+          res.render('home/index');
+       }
+
+ });
+
+
+
+//Render painting upload form
 app.get('/new_painting_upload', function(req, res){
   var data ;
   if(req.session.user){
@@ -146,33 +191,6 @@ app.get('/new_painting_upload', function(req, res){
     res.render('home/index');
   }
 });
-//
-app.post('/new_painting_upload', multer({ dest: './uploads/'}).single('image'), function(req,res){
-    console.log(req.body);
-    console.log(req.file);
-    res.status(204).end();
-    var data = req.body;
-    // var userId
-
-    db.none(
-      "INSERT INTO paintings (name, description, type) VALUES ($1, $2, $3)",
-      [data.name, data.description, data.type]
-    ).catch(function(e){
-      res.send('Failed to upload: ' + e);
-
-    }).then(function(){
-      // res.send('User created!');
-      res.redirect("/portfolio");
-    });
-    // upload(req,res,function(err) {
-    //     if(err) {
-    //         return res.end("Error uploading file.");
-    //     }
-    //     res.end("File is uploaded");
-    // });
-});
-
-
 
 
 // imgur.setClientID('');
