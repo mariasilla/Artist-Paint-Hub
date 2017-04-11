@@ -63,6 +63,7 @@ app.post('/login', function(req, res){
     .then(function(user){
       bcrypt.compare(data.password, user.password_digest, function(err, cmp){
         if(cmp){
+          console.log(user);
           req.session.user = user;
           res.redirect("/profile/");
         } else {
@@ -83,11 +84,16 @@ app.post('/login', function(req, res){
        "zipcode": req.session.user.zipcode,
        "nickname": req.session.user.nickname
      };
-     // var url = 'https://api.meetup.com/2/open_events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&zip=10003&text=painter&page=20';
-     var url = 'https://api.meetup.com/find/events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&text=painter&page=6';
-     axios.get(url)
+     console.log(data.zipcode);
+     //https://api.meetup.com/2/open_events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&zip=10003&text=painter&page=20
+     var url = 'https://api.meetup.com/2/open_events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&zip=';
+     var search = '&text=painting&page=20';
+    //  var url = 'https://api.meetup.com/find/events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&text=painter&page=20';
+    //display API's data according to user's zipcode
+     axios.get(url+data.zipcode+search)
      .then(function(response){
-       data.meetup = response.data
+      //  data.meetup = response.data
+       data.meetup = response.data.results
      //  console.log(data.meetup);
      res.render('profile/user', data);
    })
@@ -95,6 +101,7 @@ app.post('/login', function(req, res){
      res.render('home/index');
    }
  })
+
 
 //render user sign-up
 app.get('/signup', function(req, res){
@@ -127,23 +134,25 @@ app.get('/portfolio', function(req, res){
       "logged_in": true,
       "email": req.session.user.email,
       "nickname": req.session.user.nickname
-         };
-
+      };
+     //select paintings specific to the user logged in
     db
-       .any("SELECT * FROM paintings")
-       .then(function(data){
-         data.paintings_array = {
-           paintings: data
+       .any("SELECT * FROM paintings WHERE user_id='"+req.session.user.id+"'")
+       .then(function(info){
+         console.log(info);
+          paintings_array = {
+           paintings: info,
+           security: data
           }
 
-        res.render('profile/portfolio', data)
+        res.render('profile/portfolio', paintings_array)
      })
-
     // res.render('profile/portfolio', data);
   } else {
     res.render('home/index');
   }
 })
+
 
 //Multer upload
 // followed this tutorial: https://www.codementor.io/tips/9172397814/setup-file-uploading-in-an-express-js-application-using-multer-js
@@ -152,7 +161,6 @@ app.post('/new_painting_upload', multer({ dest: './uploads/images/'}).single('im
   if(req.session.user){
     console.log(req.body);
     data = req.body;
-
     console.log(req.file.path);
     var imagePath =  req.file.path.substring(8);
     console.log(imagePath);
@@ -160,7 +168,7 @@ app.post('/new_painting_upload', multer({ dest: './uploads/images/'}).single('im
 
                 db.none(
                   "INSERT INTO paintings (name, description, type, image, user_id) VALUES ($1, $2, $3, $4, $5)",
-                  [data.name, data.description, data.type, imagePath, 1]
+                  [data.name, data.description, data.type, imagePath, req.session.user.id]
                 ).catch(function(e){
                   res.send('Failed to upload: ' + e);
 
@@ -173,8 +181,7 @@ app.post('/new_painting_upload', multer({ dest: './uploads/images/'}).single('im
           res.render('home/index');
        }
 
- });
-
+  });
 
 
 //Render painting upload form
@@ -192,11 +199,7 @@ app.get('/new_painting_upload', function(req, res){
   }
 });
 
-
-// imgur.setClientID('');
-// imgur.upload(path.join(__dirname, 'images/korablik.JPG'), function (err, res) {
-//   console.log(res.data.link); // Log the imgur url
-// });
+//Render delete painting page
 
 
 // Update  user info

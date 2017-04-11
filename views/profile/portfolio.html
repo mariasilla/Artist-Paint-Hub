@@ -19,17 +19,19 @@
     </nav>
 
         <!-- <br> -->
-        {{#logged_in}}
+        {{#security.logged_in}}
 
     <div class="homepagesection-divider" id="hr1">
-      <h2 id="portHeading"> {{nickname}}'s portfolio.</h2>
+      <h2 id="portHeading"> {{security.nickname}}'s portfolio.</h2>
     </div>
 
         <div class="content">
      <ul>
        {{#paintings}}
         <!-- <li><a href="#!"><img src="images/korablik.JPG" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal" data-pname="" class=""></a></li> -->
-        <li><a href="#!"><img src="{{image}}" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal" data-pname="{{name}}" class=""></a></li>
+
+        <li><a href="#!"><img src="{{image}}" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal" data-pname="{{name}}" class="">{{message}}</a></li>
+
         {{/paintings}}
     </ul>
      </div>
@@ -57,7 +59,7 @@
             <a href="/new_painting_upload">Upload your painting</a>
      </div>
 
-        {{/logged_in}}
+        {{/security.logged_in}}
 
   </body>
   <!-- Jquery  -->

@@ -26,14 +26,16 @@
     </div>
 
     <div class="homepagesection-divider" id="eventHr">
-      <h3>Art events happening in your area</h3>
+      <h3>Art events happening within your {{zipcode}} zipcode area</h3>
     </div>
 
      <div class="container" id="eventsContainer">
        <div class="row">
          {{#meetup}}
          <div class="col-md-4">
-           <h2>{{group.name}}</h2>
+           <!-- {{group.name}} -->
+           <h2>{{name}}</h2>
+           <h2>in {{venue.state}} state</h2>
            <!-- <p>Address: {{}}</p> -->
            <p><a class="btn btn-default" href="{{link}}" role="button">Find out more &raquo;</a></p>
          </div>
