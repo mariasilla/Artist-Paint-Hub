@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Google Font Architects D  -->
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+    <!-- Icon -->
+    <link rel="shortcut icon" href="images/icon.ico" />
       <!-- Main CSS -->
     <link href="css/style.css" rel="stylesheet" type="text/css">
   </head>
@@ -15,9 +17,11 @@
     <nav class="navbar navbar-fixed-top" role="navigation">
        <div class="container">
           <h1>Artist Paint Hub</h1>
+          <a href="/logout" id="logoutLink">Log Out</a>
+          <a href="/profile" id="profileLink">Back to your profile</a>
        </div>
    </nav>
-
+{{#logged_in}}
     <!-- Form starts here -->
     <div class="container">
       <form class="well form-horizontal" id="uploadForm" enctype="multipart/form-data" action="/new_painting_upload" method="post">
@@ -74,41 +78,13 @@
       <label class="col-md-4 control-label"></label>
        <div class="col-md-4">
         <button type="submit" class="btn btn-primary addValue" id="uploadBtn">Upload!</button>
-      </div>
-    </div>
-
+       </div>
+     </div>
     </fieldset>
   </form>
  </div>
 
-
-
-   <!-- <div class="main-container">
-        <h1>Upload your painting</h1>
-            <form class="form-horizontal" id="uploadForm" enctype="multipart/form-data" action="/new_painting_upload" method="post">
-                <legend>Upload</legend>
-
-                  <label for="inputName" class="col-lg-2 control-label">Name</label>
-                    <input name="name" type="text" class="form-control" id="inputName" placeholder="Name">
-
-                  <label for="inputDescription" class="col-lg-2 control-label">Description</label>
-                    <input name="description" type="text" class="form-control" id="inputDescription" placeholder="Description">
-
-                  <label for="inputType" class="col-lg-2 control-label">Type of your painting</label>
-                    <input name="type" type="text" class="form-control" id="inputType" placeholder="Type"> -->
-                <!-- <div class="form-group">
-                  <label for="inputImage_url" class="col-lg-2 control-label">Upload the image of your painting</label>
-                  <div class="col-lg-10">
-                    <input name="image_url" type="text" class="form-control" id="inputImage_url" placeholder="image_url">
-                  </div>
-                </div>
-                <label for="inputImage" class="col-lg-2 control-label">Upload the image of your painting</label>
-                 <input type="file"  name="image"/>
-                <button type="submit" class="btn btn-primary" id="create">Create!</button>
-         </form>
-     </div> -->
-
-   <a href="/logout">Logout!</a>
+  {{/logged_in}}
 
    </body>
   <script src="js/jquery.js"></script>

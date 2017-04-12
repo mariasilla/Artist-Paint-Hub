@@ -1,21 +1,3 @@
-body {
-  /*background: url('./images/korablik.JPG') no-repeat center center fixed;
-  background-size: cover;*/
-}
-/*.main-container {
-  width: 400px;
-  margin: 0 auto;
-}
-
-h1 {
-  text-align: center;
-}*/
-/*
-.transparent-input {
-  background-color: : rgba(0, 0, 0, 0.5);
-  border: none;
-}*/
-
 
 body{
 background: url('http://i.imgur.com/Mgc3gcj.jpg') no-repeat center center fixed;
@@ -47,11 +29,17 @@ h1 {
   border: none;
   font-size: 23px;
 }
+#modal-delete-button{
+  margin-top: -83px;
+  background-color: red;
+  color: black;
+  border: none;
+  font-size: 13px;
+}
 #signup_form, #uploadForm{
   margin-top: 150px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
-
 }
 
 #signup_link {
@@ -112,6 +100,7 @@ footer {
   margin-bottom: -55px;
   text-align: center;
   background-color: #0d821f;
+  font-weight: 800;
 }
 #eventsContainer{
   margin-top: 50px;
@@ -120,7 +109,12 @@ footer {
   margin-top: 40px;
   margin-bottom: 50px;
   text-align: center;
-  font-size: 30px;
+  font-weight: 800;
+}
+#footerHr a{
+    color: #0d821f;
+    text-decoration: none;
+    font-size: 50px;
 }
 
 .content {
@@ -167,11 +161,36 @@ footer {
     box-shadow: 6px 6px 6px rgba (0,0,0,.3);
 }
 
-
 #myModalLabel {
     padding-top: 0px;
 }
 #portHeading{
   font-size: 38px;
-
+}
+#logoutLink, #profileLink{
+float: right;
+color: #000000;
+margin-top: -73px;
+font-size: 22px;
+text-decoration: none;
+}
+#profileLink{
+float: left;
+}
+#allpaintingsLink{
+  font-size: 22px;
+ color: #000000;
+ text-decoration: none;
+}
+#postCommentBtn{
+  margin-top: -15px;
+  margin-bottom: -30px;
+  float: left;
+  background-color: #0d821f;
+  color: black;
+  border: none;
+  font-size: 13px;
+}
+#profileNav{
+   background-color: rgba(204, 204, 204, 0.8);
 }

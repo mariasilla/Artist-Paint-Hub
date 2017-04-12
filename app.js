@@ -63,7 +63,7 @@ app.post('/login', function(req, res){
     .then(function(user){
       bcrypt.compare(data.password, user.password_digest, function(err, cmp){
         if(cmp){
-          console.log(user);
+          // console.log(user);
           req.session.user = user;
           res.redirect("/profile/");
         } else {
@@ -84,7 +84,7 @@ app.post('/login', function(req, res){
        "zipcode": req.session.user.zipcode,
        "nickname": req.session.user.nickname
      };
-     console.log(data.zipcode);
+    //  console.log(data.zipcode);
      //https://api.meetup.com/2/open_events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&zip=10003&text=painter&page=20
      var url = 'https://api.meetup.com/2/open_events?key=125567365e1835372f462b14a4a2d41&sign=true&photo-host=public&zip=';
      var search = '&text=painting&page=20';
@@ -136,8 +136,12 @@ app.get('/portfolio', function(req, res){
       "nickname": req.session.user.nickname
       };
      //select paintings specific to the user logged in
+     var user_id = req.session.user.id
+    // db
+    //   .any("SELECT * FROM comments WHERE ")
+
     db
-       .any("SELECT * FROM paintings WHERE user_id='"+req.session.user.id+"'")
+       .any("SELECT * FROM paintings WHERE user_id = $1", user_id)
        .then(function(info){
          console.log(info);
           paintings_array = {
@@ -151,6 +155,34 @@ app.get('/portfolio', function(req, res){
   } else {
     res.render('home/index');
   }
+
+})
+
+//Render all paintings to one page
+app.get('/allpaintings', function(req, res){
+  var data;
+
+  if(req.session.user){
+       data = {
+      "logged_in": true,
+      "email": req.session.user.email,
+      "nickname": req.session.user.nickname
+      };
+
+    db
+       .any("SELECT * FROM paintings")
+       .then(function(info){
+          paintings_array = {
+           paintings: info,
+           security: data
+          }
+
+        res.render('profile/allpaintings', paintings_array)
+     })
+    // res.render('profile/portfolio', data);
+  } else {
+    res.render('home/index');
+  }
 })
 
 
@@ -159,11 +191,11 @@ app.get('/portfolio', function(req, res){
 app.post('/new_painting_upload', multer({ dest: './uploads/images/'}).single('image'), function(req,res){
   var data;
   if(req.session.user){
-    console.log(req.body);
+    // console.log(req.body);
     data = req.body;
-    console.log(req.file.path);
+    // console.log(req.file.path);
     var imagePath =  req.file.path.substring(8);
-    console.log(imagePath);
+    // console.log(imagePath);
     // res.status(204).end();
 
                 db.none(
@@ -180,7 +212,6 @@ app.post('/new_painting_upload', multer({ dest: './uploads/images/'}).single('im
        } else {
           res.render('home/index');
        }
-
   });
 
 
@@ -199,20 +230,67 @@ app.get('/new_painting_upload', function(req, res){
   }
 });
 
-//Render delete painting page
-
-
-// Update  user info
-// app.put('/user', function(req, res){
-//   db
-//     .none("UPDATE users SET email = $1 WHERE email = $2",
-//       [req.body.email, req.session.user.email]
-//     ).catch(function(){
-//       res.send('Failed to update user.');
-//     }).then(function(){
-//       res.send('User updated.');
-//     });
+// Render delete painting page
+// app.get('/new_painting_upload', function(req, res){
+//     res.render('profile/deletepainting');
 // });
+
+// Delete a painting
+app.delete('/deletepainting/:id', function(req, res){
+  console.log(req.params.id)
+      var id = req.params.id;
+      console.log(req.body);
+      if(req.session.user){
+        db.none(
+            "DELETE FROM paintings WHERE id = $1", id
+        ).then(function(){
+        res.redirect("/portfolio");
+        });
+
+      } else {
+        res.render('home/index');
+      }
+})
+
+//Update  user info
+app.put('/user', function(req, res){
+  db
+    .none("UPDATE users SET email = $1 WHERE email = $2",
+      [req.body.email, req.session.user.email]
+    ).catch(function(){
+      res.send('Failed to update user.');
+    }).then(function(){
+      res.redirect("/profile");
+      // res.send('User updated.');
+    });
+
+});
+
+//Render update user page
+app.get('/updateprofile', function(req, res){
+    res.render('profile/updateprofile');
+});
+
+//Post user's comments
+app.post('/comment', function(req,res){
+  var data = req.body;
+  if(req.session.user){
+
+                db.none(
+                  "INSERT INTO comments (description, painting_id, user_id) VALUES ($1, $2, $3)",
+                  [data.description, data.painting_id, req.session.user.id]
+                ).catch(function(e){
+                  res.send('Failed to post comment: ' + e);
+
+                }).then(function(){
+                  // res.render('profile/portfolio', data);
+                  res.redirect("/portfolio");
+                });
+
+       } else {
+          res.render('home/index');
+              }
+  });
 
 
 //Logout

@@ -18,21 +18,21 @@
         <h1>Artist Paint Hub</h1>
           <a href="/logout" id="logoutLink">Log Out</a>
           <a href="/profile" id="profileLink">Back to your profile</a>
-             <a href="/allpaintings" id="allpaintingsLink">See other users' paintings</a>
       </div>
     </nav>
+
         <!-- <br> -->
         {{#security.logged_in}}
 
     <div class="homepagesection-divider" id="hr1">
-      <h2 id="portHeading"> {{security.nickname}}'s portfolio.</h2>
+      <h2 id="portHeading">Here you can find all the paintings stored on our website.</h2>
     </div>
 
         <div class="content">
      <ul>
        {{#paintings}}
 
-        <li><a href="#!"><img src="{{image}}" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal{{id}}" data-pname="Name: {{name}}. Description: {{description}}. Type: {{type}}" data-pID="{{id}}" class="">{{message}}</a></li>
+             <li><a href="#!"><img src="{{image}}" id="img1" alt="painting1" data-toggle="modal" data-target="#myModal{{id}}" data-pname="Name: {{name}}. Description: {{description}}. Type: {{type}}" data-pID="{{id}}" class="">{{message}}</a></li>
 
         {{/paintings}}
     </ul>
@@ -40,39 +40,45 @@
 
      <!-- myModal -->
      {{#paintings}}
-<div class="modal fade" id="myModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+     <div class="modal fade" id="myModal{{id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+     <div class="modal-dialog" role="document">
+     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Name: {{name}}. Description: {{description}}. Type: {{type}}</h4>
       </div>
       <div class="modal-body">
         <img class="modal-src" src="{{image}}" class="modalimage" alt="Modal Image" style="-webkit-background-size: cover;-moz-background-size: cover;background-size: cover;-o-background-size: cover;width:100%">
-        <form action="/comment" method="post">
+        <form>
             <p id="modalComments"></p>
-            <input type="hidden" name="painting_id" value="{{id}}">
             <div class="form-group">
               <label for="message-text" class="control-label">Comment:</label>
-               <textarea name="description" class="form-control" id="message-text"></textarea>
+               <textarea class="form-control" id="message-text"></textarea>
            </div>
-             <button type="sumbit" id="postCommentBtn" class="btn btn-primary">Post comment</button>
        </form>
       </div>
       <div class="modal-footer">
+        <button type="button" id="postCommentBtn" class="btn btn-primary">Post comment</button>
         <button type="button" id="modal-close-button" class="btn btn-primary" data-dismiss="modal">Close</button>
-          <form action="/deletepainting/{{id}}?_method=delete" method="post">
+          <!-- <form action="/deletepainting/{{id}}?_method=delete" method="post">
              <button type="sumbit" method="post" id="modal-delete-button" class="btn btn-primary">Delete</button>
-          </form>
-      </div>
-    </div>
-  </div>
-</div>
-{{/paintings}}
+          </form> -->
 
-     <div class="homepagesection-divider" id="footerHr">
+
+     <!-- <form action="/user?_method=delete" method="post" >
+     <p>Delete profile</p>
+     <button type="submit">submit</button>
+     </form> -->
+
+               </div>
+            </div>
+         </div>
+       </div>
+     {{/paintings}}
+
+     <!-- <div class="homepagesection-divider" id="footerHr">
             <a href="/new_painting_upload">Upload your painting</a>
-     </div>
+     </div> -->
 
         {{/security.logged_in}}
 

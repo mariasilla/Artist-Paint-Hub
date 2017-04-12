@@ -5,20 +5,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Google Font Architects D  -->
     <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
+    <!-- Icon -->
+    <link rel="shortcut icon" href="images/icon.ico" />
     <!-- Main CSS -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-fixed-top" role="navigation" id="profileNav">
       <div class="container">
         <h1>Artist Paint Hub</h1>
-          <a href="/logout">Logout!</a>
+          <a href="/logout" id="logoutLink">Log Out</a>
+          <a href="/updateprofile" id="profileLink">Update your profile</a>
       </div>
     </nav>
-
-        <!-- <br> -->
         {{#logged_in}}
 
     <div class="homepagesection-divider" id="hr1">
@@ -33,25 +34,12 @@
        <div class="row">
          {{#meetup}}
          <div class="col-md-4">
-           <!-- {{group.name}} -->
            <h2>{{name}}</h2>
-           <h2>in {{venue.state}} state</h2>
-           <!-- <p>Address: {{}}</p> -->
-           <p><a class="btn btn-default" href="{{link}}" role="button">Find out more &raquo;</a></p>
+           <h2>in {{venue.city}} city</h2>
+           <p><a class="btn btn-default" href="{{event_url}}" role="button">Find out more &raquo;</a></p>
          </div>
-         <!-- <div class="col-md-4">
-           <h2>Event Heading</h2>
-           <p>Event description</p>
-           <p><a class="btn btn-default" href="#" role="button">Event details link &raquo;</a></p>
-        </div> -->
         {{/meetup}}
        </div>
-
-    <!-- <div class="content">
-       <ul>
-          <li><a href="#!">{{group.name}}</a></li>
-       </ul>
-    </div> -->
 
      <div class="homepagesection-divider" id="footerHr">
             <a href="/portfolio">Go to your portfolio</a>
