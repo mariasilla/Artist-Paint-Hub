@@ -1,1 +1,1 @@
-[ERD link](http://imgur.com/a/LuJyc "ERD")
+[ERD link](http://i.imgur.com/7XjGa2f.png "ERD")
