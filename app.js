@@ -230,10 +230,6 @@ app.get('/new_painting_upload', function(req, res){
   }
 });
 
-// Render delete painting page
-// app.get('/new_painting_upload', function(req, res){
-//     res.render('profile/deletepainting');
-// });
 
 // Delete a painting
 app.delete('/deletepainting/:id', function(req, res){
@@ -251,6 +247,10 @@ app.delete('/deletepainting/:id', function(req, res){
         res.render('home/index');
       }
 })
+
+
+//Delete user's profile
+
 
 //Update  user info
 app.put('/user', function(req, res){
