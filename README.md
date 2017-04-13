@@ -21,7 +21,7 @@ Bcrypt
 
 Front-End:
 HTML5,
-CSS,
+CSS3,
 Bootstrap,
 Javascript,
 jQuery
