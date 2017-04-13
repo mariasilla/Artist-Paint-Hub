@@ -9,7 +9,6 @@ Technologies used
 
 Back-end:
 NodeJS,
-Javascript,
 Express,
 Express-Session,
 PG-promise,
