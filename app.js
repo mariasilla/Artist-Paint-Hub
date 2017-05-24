@@ -300,6 +300,6 @@ app.get('/logout', function(req, res){
 });
 
 // Starting the server
-app.listen(3000, function () {
+app.listen(8080, function () {
   console.log('Server running, listening on port 3000!');
 });
