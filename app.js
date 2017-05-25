@@ -40,7 +40,7 @@ app.use(session({
   cookie: { secure: false }
 }))
 //set port to 5000
-var port = process.env.PORT || 5000
+var port = process.env.PORT || 8000
 
 app.listen(port, function(){
   console.log("Server Running {^-^}");
