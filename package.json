@@ -4,11 +4,15 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start":"node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mariasilla/ga-project2-crud.git"
+  },
+  "engines":{
+    "node": "7.6.0"
   },
   "author": "",
   "license": "ISC",

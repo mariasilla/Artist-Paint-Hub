@@ -39,12 +39,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }))
-//set port to 5000
-var port = process.env.PORT || 8000
-
-app.listen(port, function(){
-  console.log("Server Running {^-^}");
-})
 
 
 //connect to art_port_db database
@@ -308,3 +302,10 @@ app.get('/logout', function(req, res){
 // app.listen(3000, function () {
 //   console.log('Server running, listening on port 3000!');
 // });
+
+//set port to 8000
+var port = process.env.PORT || 8000
+
+app.listen(port, function(){
+  console.log("Server Running {^-^}");
+})
