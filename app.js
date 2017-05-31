@@ -44,10 +44,10 @@ app.use(session({
 
 
 //connect to art_port_db database
-// var db = pgp('postgres://kuzia@localhost:5432/art_port_db');
+var db = pgp('postgres://kuzia@localhost:5432/art_port_db');
 
 //connect to heroku database
-var db = pgp('postgres://nswscekfrxvwcd:39d8d75271a263ebe72b27c121817720fe27b8350364eab4794b6d9b98d4f35a@ec2-23-23-234-118.compute-1.amazonaws.com:5432/d408n9430dserl');
+// var db = pgp('postgres://nswscekfrxvwcd:39d8d75271a263ebe72b27c121817720fe27b8350364eab4794b6d9b98d4f35a@ec2-23-23-234-118.compute-1.amazonaws.com:5432/d408n9430dserl');
 
 //render Home page
 app.get('/', function(req, res){
@@ -304,13 +304,13 @@ app.get('/logout', function(req, res){
 });
 
 // Starting the server
-// app.listen(3000, function () {
-//   console.log('Server running, listening on port 3000!');
-// });
+app.listen(process.env.PORT || 3000, function () {
+  console.log('Server running, listening on port 3000!');
+});
 
 //set port to 8000
-var port = process.env.PORT || 8000
-
-app.listen(port, function(){
-  console.log("Server Running {^-^}");
-})
+// var port = process.env.PORT || 8000
+//
+// app.listen(port, function(){
+//   console.log("Server Running {^-^}");
+// })
