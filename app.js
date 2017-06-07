@@ -47,7 +47,19 @@ app.use(session({
 // var db = pgp('postgres://kuzia@localhost:5432/art_port_db');
 
 //connect to heroku database
-var db = pgp('postgres://nswscekfrxvwcd:39d8d75271a263ebe72b27c121817720fe27b8350364eab4794b6d9b98d4f35a@ec2-23-23-234-118.compute-1.amazonaws.com:5432/d408n9430dserl');
+var herokuDb = 'postgres://nswscekfrxvwcd:39d8d75271a263ebe72b27c121817720fe27b8350364eab4794b6d9b98d4f35a@ec2-23-23-234-118.compute-1.amazonaws.com:5432/d408n9430dserl';
+var db=pgp(herokuDb);
+
+pg.defaults.ssl = true;
+pg.connect(process.env.DATABASE_URL, function(err, client) {
+  if (err) thrlog('Connected to postgres! Getting schemas...');
+
+  client
+    .query('SELECT table_schema,table_name FROM information_schema.tables;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
+    });
+});
 
 //render Home page
 app.get('/', function(req, res){
