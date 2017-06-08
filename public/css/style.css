@@ -2,9 +2,10 @@
 body{
 background: url('http://i.imgur.com/Mgc3gcj.jpg') no-repeat center center fixed;
 background-size: cover;
+text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
 
-h1 {
+#logo {
   text-align: center;
   font-family: 'Architects Daughter', cursive, sans-serif;
   font-size: 90px;

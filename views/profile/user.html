@@ -9,15 +9,17 @@
     <link rel="shortcut icon" href="images/icon.ico" />
     <!-- Main CSS -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <!-- Media-queries CSS -->
+    <link href="/css/media-queries.css" rel="stylesheet" type="text/css">
   </head>
 
   <body>
     <!-- Navigation -->
     <nav class="navbar navbar-fixed-top" role="navigation" id="profileNav">
       <div class="container">
-        <h1>Artist Paint Hub</h1>
-          <a href="/logout" id="logoutLink">Log Out</a>
-          <a href="/updateprofile" id="profileLink">Update your profile</a>
+        <h1 id="logo">Artist Paint Hub</h1>
+          <a href="/logout" id="logoutLink"><i class="fa fa-sign-out" aria-hidden="true"></i>Sign out</a>
+          <a href="/updateprofile" id="profileLink"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update your profile</a>
       </div>
     </nav>
         {{#logged_in}}
@@ -48,6 +50,8 @@
         {{/logged_in}}
 
   </body>
+  <!-- Font awesome  -->
+  <script src="https://use.fontawesome.com/e21ea2f3ad.js"></script>
   <!-- Jquery  -->
   <script src="/js/jquery.js"></script>
   <!-- Main JS -->
