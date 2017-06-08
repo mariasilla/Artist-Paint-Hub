@@ -44,11 +44,11 @@ app.use(session({
 
 
 //connect to art_port_db database
-var db = pgp('postgres://kuzia@localhost:5432/art_port_db');
+// var db = pgp('postgres://kuzia@localhost:5432/art_port_db');
 
 //connect to heroku database
-// var herokuDb = 'postgres://nswscekfrxvwcd:39d8d75271a263ebe72b27c121817720fe27b8350364eab4794b6d9b98d4f35a@ec2-23-23-234-118.compute-1.amazonaws.com:5432/d408n9430dserl';
-// var db=pgp(herokuDb);
+var herokuDb = 'postgres://nswscekfrxvwcd:39d8d75271a263ebe72b27c121817720fe27b8350364eab4794b6d9b98d4f35a@ec2-23-23-234-118.compute-1.amazonaws.com:5432/d408n9430dserl';
+var db=pgp(herokuDb);
 
 
 
