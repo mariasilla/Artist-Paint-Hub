@@ -33,3 +33,5 @@ ERD:
 
 Homepage Screenshot:
 ![Homepage Screenshot](http://i.imgur.com/f4NptVw.png)
+
+App is deployed at https://mariasilla-artist-paint-hub.herokuapp.com/portfolio
